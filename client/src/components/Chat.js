@@ -17,8 +17,9 @@ const Chat = () => {
         socket = io(ENDPOINT);
         setName(name);
         setRoom(room);
-        socket.emit('join',{ name,room },()=>{
+        socket.emit('join',{ name,room },(error)=>{
 
+            console.log(error)
             //this is a call back function recive informations from the .on
         })
         //note here we can send from one local host to another using the socket here we have defined teh port we want to send to then we gave the order emit and it will send it to the order .on which mean recive that have teh same name as the emitter
@@ -41,7 +42,7 @@ const Chat = () => {
     const sendMessage = (event) =>{
         event.preventDefault();
         if(message){
-            socket.emit('sendMessage')
+            socket.emit('send',message, ()=>setMessage("") )
         }
     }
     console.log(message,messages)
@@ -50,9 +51,10 @@ const Chat = () => {
             <h1>Chat</h1>
             <input value={message}
              onChange={(e)=>setMessage(e.target.value)}
-             onKeyPress={event => event.key ==="Enter"?sendMessage(event):null}/>
+             onKeyPress={event => event.key =="Enter" ? sendMessage(event):null}/>
         </div>
     )
 }
 
 export default Chat
+
