@@ -7,6 +7,8 @@ let socket;
 const Chat = () => {
      const [name,setName] = useState('');
      const [room,setRoom] = useState('');
+     const [message,setMessage] = useState("")
+     const [messages,setMessages] = useState([]);
      const ENDPOINT = 'localhost:5000'
     useEffect(() => {
         const {name,room} = queryString.parse(window.location.search)
@@ -23,13 +25,32 @@ const Chat = () => {
         // i had a problem here wiht the cors
         // the proplem here was because i havent specified the cores header for the server
         return ()=>{
-            socket.emit('disconnect');
+            socket.emit('dsconnect');
             socket.off()// it turns the socet off for the user 
         }
     }, [ENDPOINT,window.location.search])
+
+    useEffect(()=>{
+        socket.on('message',(message)=>{
+                setMessages([...messages,message])
+                // spread + add 
+        })
+    },[messages]);
+
+    //function for sending messages
+    const sendMessage = (event) =>{
+        event.preventDefault();
+        if(message){
+            socket.emit('sendMessage')
+        }
+    }
+    console.log(message,messages)
     return (
         <div>
             <h1>Chat</h1>
+            <input value={message}
+             onChange={(e)=>setMessage(e.target.value)}
+             onKeyPress={event => event.key ==="Enter"?sendMessage(event):null}/>
         </div>
     )
 }

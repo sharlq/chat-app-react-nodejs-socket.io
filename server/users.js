@@ -4,7 +4,7 @@ const users= [];
 
 const addUser = ({id,name,room}) =>{
     name =name.trim().toLoweCase();
-    room = room.trim.toLowerCase();
+    room = room.trim().toLowerCase();
     //to unify the for of the data we are dealing with so we can control it and comprare it
 
     const exitsingUser = users.find((user)=>user.room===room&&user.name === name)
