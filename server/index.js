@@ -4,6 +4,7 @@ const http = require('http');
 const router = require('./router')
 const { setServers } = require('dns');
 const { Socket } = require('dgram');
+const { callbackify } = require('util');
 
 const PORT = process.env.PORT || 5000 ; // because when deployment because the sevrver will going to require a spicific prot and it will be there
 
@@ -21,6 +22,11 @@ io.on('connection', (socket)=>{
 
     socket.on('join',({name,room})=>{
         console.log(name, room)
+
+        
+      /*  if(error){
+            callback({error: 'error'}) // this pass object to the emiter to its third argument where its a call back function 
+        }*/
     })
     
     socket.on('disconnect',()=>{
@@ -29,9 +35,6 @@ io.on('connection', (socket)=>{
 })
 
 app.use(router);
-app.use((req,res,next)=>{
-    res.header("Access-Control-Allow-Origin:","*")
-    next()
-})
+
 
 server.listen(PORT, ()=> console.log(`sever has started on port ${PORT}`))
