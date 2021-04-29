@@ -49,13 +49,16 @@ io.on('connection', (socket)=>{
 
     // the emiting part of the message will be happening in the front end and here we are expecting the event on the backend so we are waiting on send message
    
-    socket.on('send',(message,callback)=>{
+    socket.on('sendMessage',(message,callback)=>{
         const user = getUser(socket.id)
-        console.log(user)
+        console.log(socket.id)
+        console.log(getUser(socket.id),user,user.name)
+        //found the issue its in the get user function 
+        // it took time to debug because i was waiting for the console.log ib the browser hahahha
         io.to(user.room).emit('message',{user:user.name,text: message})
         callback();
     })
-   
+   /* finally have found the problem it was with the get user function it was return the index and i was using the index of the object as if its the object it self */
   
     
     // it apears to be the problem is that this lestiner doest get the event

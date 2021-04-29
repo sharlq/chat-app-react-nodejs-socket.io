@@ -24,7 +24,9 @@ const removeUser =(id)=>{
  //it could also be done using .filter 
 }
 
-const getUser=(id)=>users.findIndex((user)=>user.id === id)
+const getUser=(id)=>{
+    console.log("hie",users)
+    return users[users.findIndex((user)=>user.id === id)]}
 
 
 const getUserinRoom = () => users.filter((user) => user.room === room )
