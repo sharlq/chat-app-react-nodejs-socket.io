@@ -105,6 +105,10 @@ a {
   height: 600px;
 }
 
+.messages {
+  overflow: auto;
+}
+
 .message {
   margin: 10px;
   display: -webkit-box;
@@ -146,5 +150,19 @@ a {
   border-radius: 5px;
   background: #ebebeb;
   color: black;
+}
+
+.logout-btn {
+  color: white !important;
+}
+
+::-webkit-scrollbar {
+  background: #ffffff;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: -webkit-gradient(linear, left bottom, left top, from(#3f51b5), to(transparent));
+  background: linear-gradient(360deg, #3f51b5, transparent);
+  border-radius: 10px;
 }
 /*# sourceMappingURL=main.css.map */

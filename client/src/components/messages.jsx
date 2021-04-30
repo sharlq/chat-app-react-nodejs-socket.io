@@ -1,20 +1,12 @@
 import React from 'react'
-import {Typography} from '@material-ui/core'
-const Messages = ({name,text,user}) => {
+import Message from "./message"
+
+const Messages = ({messages,name}) => {
     return (
-        <div>
-       {(name===user)?
-       <div className="message">
-        <Typography className="name" variant="subtitle1">{name}</Typography> 
-        <Typography className="text" variant="body1">{text}</Typography>
+        <div className="messages">
+           {messages.map((i)=><Message name={i.user} text={i.text} user={name}/>)}
+            <div></div>
         </div>
-        :
-        <div className="message-rev">
-        <Typography className="text" variant="body1">{text}</Typography>
-        <Typography className="name" variant="subtitle1">{name}</Typography> 
-        </div>
-        }
-    </div>
     )
 }
 
