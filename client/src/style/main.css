@@ -1,0 +1,47 @@
+body {
+  background: black;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  margin: auto;
+  margin-top: 15vw;
+  max-width: 300px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container div {
+  margin-top: 5px;
+}
+
+.container .btn {
+  margin: 10px;
+  width: 230px;
+}
+
+.container .input {
+  width: 250px;
+}
+
+.container .title {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: auto;
+}
+/*# sourceMappingURL=main.css.map */

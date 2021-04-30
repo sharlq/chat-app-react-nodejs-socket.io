@@ -1,19 +1,22 @@
 import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
+import {Card,CardContent,Button,Typography,TextField} from '@material-ui/core'
+
+
 const Join = () => {
     const [name, setName] = useState('')
     const [room, setRoom] = useState('')
     return (
-        <div className="outer-container">
-        <div className="inner-container">
-            <h1>Join</h1>
-            <div><input type="text" onChange={(e)=>{setName(e.target.value)}} placeholder="name"/></div>
-            <div><input type="text" onChange={(e)=>{setRoom(e.target.value)}} placeholder="room"/></div>
+        <Card className="container">
+        <CardContent className="container-inner">
+            <Typography className="title" variant="h4">Join</Typography>
+            <div><TextField variant="outlined" className="input" onChange={(e)=>{setRoom(e.target.value)}} placeholder="room"/></div>
+            <div><TextField variant="outlined" className="input" onChange={(e)=>{setName(e.target.value)}} placeholder="name"/></div>
             <Link onClick={e=>(!name||!room)?e.preventDefault():null} to={`/chat?name=${name}&room=${room}`}>
-            <button className="button" type="submit">JOIN</button>
+            <Button className="btn" type="submit" variant="contained" color="primary">JOIN</Button>
             </Link>
-        </div>
-        </div>
+        </CardContent>
+        </Card>
     )
 }
 
