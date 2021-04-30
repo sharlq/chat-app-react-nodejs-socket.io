@@ -93,4 +93,58 @@ a {
   width: 50px;
   border: 1px solid #3f51b5;
 }
+
+.chat .messages {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 600px;
+}
+
+.message {
+  margin: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.message .name {
+  color: #9a9a9a;
+  margin: 0 5px 0 5px;
+}
+
+.message .text {
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+  background: #3f51b5;
+  color: white;
+}
+
+.message-rev {
+  margin: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.message-rev .name {
+  color: #9a9a9a;
+  margin: 0 5px 0 5px;
+}
+
+.message-rev .text {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+  background: #ebebeb;
+  color: black;
+}
 /*# sourceMappingURL=main.css.map */

@@ -34,4 +34,41 @@
     }
         }
 
+        .messages{
+            display: flex;
+            flex-direction: column;
+            height: 600px;
+        }
+
+}
+
+.message{
+    margin: 10px;
+    display:flex;
+    .name{
+        color: #9a9a9a;
+        margin: 0 5px 0 5px;
+    }
+    .text{
+        padding: 5px 10px 5px 10px;
+        border-radius: 5px;
+        background: #3f51b5;
+        color: white;
+    }
+}
+.message-rev{
+    margin: 10px;
+    display:flex;
+    justify-content: flex-end;
+    .name{
+        color: #9a9a9a;
+        margin: 0 5px 0 5px;
+    }
+    .text{
+        box-sizing: border-box;
+        padding: 5px 10px 5px 10px;
+        border-radius: 5px;
+        background: #ebebeb;
+        color: black;
+    }
 }
