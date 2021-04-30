@@ -44,4 +44,53 @@ a {
   width: fit-content;
   margin: auto;
 }
+
+.chat {
+  margin: auto;
+  margin-top: 15vw;
+  width: 500px;
+}
+
+.chat .bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 450px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.chat .input {
+  width: 500px;
+}
+
+.chat .input .textbox {
+  position: relative;
+  display: inline-block;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 450px !important;
+  height: 35px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  margin: 0;
+  border-radius: 0;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  outline: none;
+}
+
+.chat .input .input-btn {
+  position: relative;
+  display: inline-block;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 0;
+  background: #3f51b5;
+  color: white;
+  height: 35px;
+  width: 50px;
+  border: 1px solid #3f51b5;
+}
 /*# sourceMappingURL=main.css.map */

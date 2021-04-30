@@ -1,6 +1,7 @@
 import React ,{useState,useEffect} from 'react'
 import queryString from 'query-string'
 import io from 'socket.io-client'
+import {Card,CardContent,Button,Typography,TextField,AppBar,Toolbar} from '@material-ui/core'
 
 let socket;
 
@@ -47,12 +48,27 @@ const Chat = () => {
     }
     console.log(message,messages)
     return (
-        <div>
-            <h1>Chat</h1>
-            <input value={message}
+        <Card className="chat">
+             <AppBar position="static">
+                <Toolbar className="bar">
+                    <Typography variant="h6" >
+                    {room}
+                    </Typography>
+                    <Button  color="inherit">Logout</Button>
+                </Toolbar>
+             </AppBar>
+             <CardContent>
+           <div>seperator<br/>
+           seperate
+           </div>
+           </CardContent>
+           <div className="input">
+            <input className="textbox" variant="outlined" value={message}
              onChange={(e)=>setMessage(e.target.value)}
              onKeyPress={event => event.key =="Enter" ? sendMessage(event):null}/>
-        </div>
+            <button className="input-btn">SEND</button>
+            </div>
+        </Card>
     )
 }
 
