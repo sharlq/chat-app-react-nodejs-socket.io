@@ -1,12 +1,10 @@
 import React ,{useState,useEffect} from 'react'
 import queryString from 'query-string'
 import io from 'socket.io-client'
-import {Card,CardContent,Button,Typography,TextField,AppBar,Toolbar} from '@material-ui/core'
-import {Link} from 'react-router-dom'
+import {Card,CardContent} from '@material-ui/core'
 import Input from "./Input"
 import Infobar from "./infobar"
 import Messages from "./Messages"
-import Message from './message'
 let socket;
 
 const Chat = () => {
