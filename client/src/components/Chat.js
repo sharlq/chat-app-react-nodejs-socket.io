@@ -2,7 +2,7 @@ import React ,{useState,useEffect} from 'react'
 import queryString from 'query-string'
 import io from 'socket.io-client'
 import {Card,CardContent,Button,Typography,TextField,AppBar,Toolbar} from '@material-ui/core'
-
+import Messages from "./messages"
 let socket;
 
 const Chat = () => {
@@ -58,8 +58,8 @@ const Chat = () => {
                 </Toolbar>
              </AppBar>
              <CardContent>
-           <div>seperator<br/>
-           seperate
+           <div className="messages">
+           {messages.map((i)=><Messages name={i.user} text={i.text} user={name}/>)}
            </div>
            </CardContent>
            <div className="input">
