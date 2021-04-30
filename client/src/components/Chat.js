@@ -2,7 +2,11 @@ import React ,{useState,useEffect} from 'react'
 import queryString from 'query-string'
 import io from 'socket.io-client'
 import {Card,CardContent,Button,Typography,TextField,AppBar,Toolbar} from '@material-ui/core'
-import Messages from "./messages"
+import {Link} from 'react-router-dom'
+import Input from "./Input"
+import Infobar from "./infobar"
+import Messages from "./Messages"
+import Message from './message'
 let socket;
 
 const Chat = () => {
@@ -46,28 +50,14 @@ const Chat = () => {
             socket.emit('sendMessage',message, ()=>setMessage("") )
         }
     }
-    console.log(message,messages)
+
     return (
         <Card className="chat">
-             <AppBar position="static">
-                <Toolbar className="bar">
-                    <Typography variant="h6" >
-                    {room}
-                    </Typography>
-                    <Button  color="inherit">Logout</Button>
-                </Toolbar>
-             </AppBar>
+            <Infobar room={room}/>
              <CardContent>
-           <div className="messages">
-           {messages.map((i)=><Messages name={i.user} text={i.text} user={name}/>)}
-           </div>
+           <Messages messages={messages} name={name}/>
            </CardContent>
-           <div className="input">
-            <input className="textbox" variant="outlined" value={message}
-             onChange={(e)=>setMessage(e.target.value)}
-             onKeyPress={event => event.key =="Enter" ? sendMessage(event):null}/>
-            <button className="input-btn">SEND</button>
-            </div>
+           <Input message={message} setMessage={setMessage} sendMessage={sendMessage}/>
         </Card>
     )
 }

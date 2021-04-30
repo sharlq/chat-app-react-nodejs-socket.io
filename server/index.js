@@ -2,7 +2,7 @@ const express = require('express');
 const socketio = require('socket.io');
 const http = require('http');
 const router = require('./router')
-const {addUser,removeUser,getUser,getUserInRoom} = require('./users')
+const {addUser,removeUser,getUser,getUsersinRoom} = require('./users')
 
 
 const PORT = process.env.PORT || 5000 ; // because when deployment because the sevrver will going to require a spicific prot and it will be there
@@ -21,9 +21,7 @@ io.on('connection', (socket)=>{
 
     socket.on('join',({name,room},callback)=>{
         console.log(name, room)
-
         const {error,user}=addUser({id:socket.id,name,room})
-
         if(error) return callback(error);
         socket.join(user.room);
         // this joins user in room .join is used to subscribe the user into a channel
@@ -33,10 +31,10 @@ io.on('connection', (socket)=>{
         */
         socket.emit('message',{user:'admin',text:`${user.name},welcome to the room ${user.room}`})
         //this will send message only to the spicific user to welcome him to the chat
-        socket.broadcast.to(user.room).emit('message',{user:"admin",text:`${user.naem}, has joined!`})
+        socket.broadcast.to(user.room).emit('message',{user:"admin",text:`${user.name}, has joined!`})
         // this will send a message to every body that that user has joined
 
-
+        io.to(user.room).emit('roomData',{room:user.room, users: getUsersinRoom(user.room)})
         callback()
       /*  if(error){
             callback({error: 'error'}) // this pass object to the emiter to its third argument where its a call back function 
@@ -51,8 +49,6 @@ io.on('connection', (socket)=>{
    
     socket.on('sendMessage',(message,callback)=>{
         const user = getUser(socket.id)
-        console.log(socket.id)
-        console.log(getUser(socket.id),user,user.name)
         //found the issue its in the get user function 
         // it took time to debug because i was waiting for the console.log ib the browser hahahha
         io.to(user.room).emit('message',{user:user.name,text: message})
@@ -65,6 +61,9 @@ io.on('connection', (socket)=>{
 
     socket.on('dsconnect',()=>{
         console.log('User had left !!!')
+        if(user){
+            io.to(user.room).emit('message',{user: 'admin' ,text:`${user.name} has left.`})
+        }
     })
 })
 
