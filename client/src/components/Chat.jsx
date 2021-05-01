@@ -13,8 +13,9 @@ const Chat = () => {
      const [message,setMessage] = useState("")
      const [messages,setMessages] = useState([]);
      const messagesRef = useRef();
-     const messagesBoxRef=useRef();
+     const messagesBox= document.getElementById("messagesBox")
      const ENDPOINT = 'http://localhost:5000/'
+     let SCROLL_HEIGHT=messagesRef.current.scrollHeight+54;
     useEffect(() => {
         const {name,room} = queryString.parse(window.location.search)
         //console.log(window.location.search) //this shows us that the query string turns the string that we get from the window.location.search into object where it give us only the text in the search
@@ -41,21 +42,23 @@ const Chat = () => {
                 setMessages([...messages,message])
                 // spread + add 
         })
-       // messagesBoxRef.scrollTo(0,messagesRef.current.height);
+        if(messagesBox){
+            messagesBox.scrollTo(0,SCROLL_HEIGHT);}
     },[message]);
-    console.log(messagesRef,messagesBoxRef)
+    console.log(messagesRef,messagesBox)
     //function for sending messages
     const sendMessage = (event) =>{
         event.preventDefault();
         if(message){
             socket.emit('sendMessage',message, ()=>setMessage("") )
         }
+        
     }
 
     return (
         <Card className="chat">
             <Infobar room={room}/>
-            <CardContent ref={messagesBoxRef} id="messagesBox" className="messages-container">
+            <CardContent  id="messagesBox" className="messages-container">
            <Messages ref={messagesRef} messages={messages} name={name}/>
            </CardContent>
            <Input message={message} setMessage={setMessage} sendMessage={sendMessage}/>
