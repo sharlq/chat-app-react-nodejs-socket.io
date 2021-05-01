@@ -14,8 +14,8 @@ const Chat = () => {
      const [messages,setMessages] = useState([]);
      const messagesRef = useRef();
      const messagesBox= document.getElementById("messagesBox")
-     const ENDPOINT = 'http://localhost:5000/'
-     let SCROLL_HEIGHT=messagesRef.current.scrollHeight+54;
+     const ENDPOINT = 'https://real-time-chat-app-shehab.herokuapp.com/'
+
     useEffect(() => {
         const {name,room} = queryString.parse(window.location.search)
         //console.log(window.location.search) //this shows us that the query string turns the string that we get from the window.location.search into object where it give us only the text in the search
@@ -24,8 +24,8 @@ const Chat = () => {
         setName(name);
         setRoom(room);
         socket.emit('join',{ name,room },(error)=>{
-
-            console.log(error)
+        if(error){
+        console.log(error)}
             //this is a call back function recive informations from the .on
         })
         //note here we can send from one local host to another using the socket here we have defined teh port we want to send to then we gave the order emit and it will send it to the order .on which mean recive that have teh same name as the emitter
@@ -43,9 +43,9 @@ const Chat = () => {
                 // spread + add 
         })
         if(messagesBox){
-            messagesBox.scrollTo(0,SCROLL_HEIGHT);}
+            messagesBox.scrollTo(0, messagesRef.current.scrollHeight+54);}
     },[message]);
-    console.log(messagesRef,messagesBox)
+
     //function for sending messages
     const sendMessage = (event) =>{
         event.preventDefault();
