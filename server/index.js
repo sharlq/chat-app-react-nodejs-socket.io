@@ -11,7 +11,7 @@ const app = express();
 const server = http.createServer(app)
 const io = socketio(server,{
     cors:{
-        origin:"http://localhost:3000",
+        origin:"*",
         methods:["GET","POST"]
     }
 }); // this have solved it by defining the cores for the socket server
@@ -69,6 +69,7 @@ io.on('connection', (socket)=>{
 })
 
 app.use(router);
+
 
 
 server.listen(PORT, ()=> console.log(`sever has started on port ${PORT}`))

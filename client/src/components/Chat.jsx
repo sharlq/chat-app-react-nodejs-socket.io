@@ -12,7 +12,7 @@ const Chat = () => {
      const [room,setRoom] = useState('');
      const [message,setMessage] = useState("")
      const [messages,setMessages] = useState([]);
-     const ENDPOINT = 'localhost:5000'
+     const ENDPOINT = 'https://real-time-chat-app-shehab.herokuapp.com/'
     useEffect(() => {
         const {name,room} = queryString.parse(window.location.search)
         //console.log(window.location.search) //this shows us that the query string turns the string that we get from the window.location.search into object where it give us only the text in the search
