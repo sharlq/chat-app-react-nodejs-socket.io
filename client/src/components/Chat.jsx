@@ -1,4 +1,4 @@
-import React ,{useState,useEffect} from 'react'
+import React ,{useState,useEffect,useRef} from 'react'
 import queryString from 'query-string'
 import io from 'socket.io-client'
 import {Card,CardContent} from '@material-ui/core'
@@ -12,7 +12,9 @@ const Chat = () => {
      const [room,setRoom] = useState('');
      const [message,setMessage] = useState("")
      const [messages,setMessages] = useState([]);
-     const ENDPOINT = 'https://real-time-chat-app-shehab.herokuapp.com/'
+     const messagesRef = useRef();
+     const messagesBoxRef=useRef();
+     const ENDPOINT = 'http://localhost:5000/'
     useEffect(() => {
         const {name,room} = queryString.parse(window.location.search)
         //console.log(window.location.search) //this shows us that the query string turns the string that we get from the window.location.search into object where it give us only the text in the search
@@ -39,8 +41,9 @@ const Chat = () => {
                 setMessages([...messages,message])
                 // spread + add 
         })
-    },[messages]);
-
+       // messagesBoxRef.scrollTo(0,messagesRef.current.height);
+    },[message]);
+    console.log(messagesRef,messagesBoxRef)
     //function for sending messages
     const sendMessage = (event) =>{
         event.preventDefault();
@@ -52,8 +55,8 @@ const Chat = () => {
     return (
         <Card className="chat">
             <Infobar room={room}/>
-             <CardContent>
-           <Messages messages={messages} name={name}/>
+            <CardContent ref={messagesBoxRef} id="messagesBox" className="messages-container">
+           <Messages ref={messagesRef} messages={messages} name={name}/>
            </CardContent>
            <Input message={message} setMessage={setMessage} sendMessage={sendMessage}/>
         </Card>

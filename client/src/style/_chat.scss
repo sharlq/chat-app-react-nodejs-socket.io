@@ -2,6 +2,8 @@
     margin: auto;
     margin-top: 10vh;
     width: 500px;
+    
+    
     .bar{
         display: flex;
         width: 450px ;
@@ -33,16 +35,20 @@
         border: 1px solid #3f51b5;
     }
         }
-
+        .messages-container{
+            height: 600px;
+            overflow:auto ;
+        }
         .messages{
             display: flex;
             flex-direction: column;
-            height: 600px;
+           
         }
 
 }
 .messages{
     overflow:auto ;
+    flex: auto;
 }
 .message{
     margin: 10px;
@@ -80,9 +86,10 @@
 }
 
 ::-webkit-scrollbar{
-    background: #ffffff;
+    background: transparent;
 }
+
+
 ::-webkit-scrollbar-thumb:hover{
     background: linear-gradient(360deg, #3f51b5, transparent);
-    border-radius: 10px;
 }

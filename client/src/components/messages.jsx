@@ -1,9 +1,9 @@
 import React from 'react'
 import Message from "./message"
 
-const Messages = ({messages,name}) => {
+const Messages = ({messages,name,refferance}) => {
     return (
-        <div className="messages">
+        <div ref={refferance} className="messages">
            {messages.map((i)=><Message name={i.user} text={i.text} user={name}/>)}
             <div></div>
         </div>

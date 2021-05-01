@@ -10,11 +10,13 @@ const PORT = process.env.PORT || 5000 ; // because when deployment because the s
 const app = express();
 const server = http.createServer(app)
 const io = socketio(server,{
+    
     cors:{
         origin:"*",
         methods:["GET","POST"]
-    }
-}); // this have solved it by defining the cores for the socket server
+    },
+  
+},{  wsEngine: require("eiows").Server }); // this have solved it by defining the cores for the socket server
 
 io.on('connection', (socket)=>{
     console.log('we have a new connection!!!');
