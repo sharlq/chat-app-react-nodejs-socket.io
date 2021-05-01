@@ -8,7 +8,7 @@ a {
 
 .container {
   margin: auto;
-  margin-top: 15vw;
+  margin-top: 15vh;
   max-width: 300px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -47,7 +47,7 @@ a {
 
 .chat {
   margin: auto;
-  margin-top: 15vw;
+  margin-top: 10vh;
   width: 500px;
 }
 
