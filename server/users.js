@@ -27,8 +27,6 @@ const removeUser =(id)=>{
 const getUser=(id)=> users[users.findIndex((user)=>user.id === id)]
 
 
-const getUsersinRoom = (room) => users.filter((user) => user.room === room )
-// note here how its easy to use the objects to catigorise the oinformations
 
 
-module.exports ={ addUser,removeUser,getUser,getUsersinRoom}
+module.exports ={ addUser,removeUser,getUser}
